@@ -2,17 +2,31 @@ import { useState } from "react";
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import * as gameService from "../../services/gameService";
+import * as commentService from "../../services/commentService";
 
 export default function GameDetails(){
-   
+    const [comment,setComment] = useState([])
     const { gameId } = useParams()
     const[game,setGame] = useState({})
 
     useEffect(() =>{
       gameService.getOne(gameId)
       .then(setGame)
-    },[gameId])
-    //const [title,category,maxLevel,imageUrl,summary] = {...game}
+      commentService.getAll(gameId)
+      .then(setComment)
+    },[gameId]) 
+
+    const addCommentHandler = async (e) =>{
+        e.preventDefault()
+       
+        const formData = new FormData(e.currentTarget)
+         const newComment =   await commentService.createComment(gameId,
+             formData.get('username'),
+             formData.get('comment'));
+             setComment(state => [...state, newComment]);
+             
+    }
+   
     return (
         <>
          <section id="game-details">
@@ -28,18 +42,15 @@ export default function GameDetails(){
     {game.summary}
     </p>
     {/* Bonus ( for Guests and Users ) */}
-    {/* <div className="details-comments">
+    <div className="details-comments">
       <h2>Comments:</h2>
       <ul>
-        <li className="comment">
-          <p>Content: I rate this one quite highly.</p>
-        </li>
-        <li className="comment">
-          <p>Content: The best </p>
-        </li>
+            {comment.map(({_id,username,text,})=>
+            (<li key={_id} className="comment" ><p>{username}: {text}</p></li>))} 
       </ul>
-      <p className="no-comment">No comments.</p>
-    </div> */}
+      {comment.length === 0 && (<p className="no-comment">No comments.</p>)}
+      
+    </div>
     {/* <div className="buttons">
       <a href="#" className="button">
         Edit
@@ -49,13 +60,14 @@ export default function GameDetails(){
       </a>
     </div> */}
   </div>
-  {/* <article className="create-comment">
+  <article className="create-comment">
     <label>Add new comment:</label>
-    <form className="form">
+    <form className="form" onSubmit={addCommentHandler}>
+        <input type="text"  name="username" placeholder="username"/>
       <textarea name="comment" placeholder="Comment......" defaultValue={""} />
       <input className="btn submit" type="submit" defaultValue="Add Comment" />
     </form>
-  </article> */}
+  </article>
 </section>
 
         </>
