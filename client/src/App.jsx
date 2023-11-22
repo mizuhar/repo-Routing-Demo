@@ -27,14 +27,30 @@ function App() {
     navigate(Path.Home)
 
   };
+  const registerSubmitHandler = async (values) => {
+
+   const result = await authService.register(values.email, values.password)
+
+    setAuth(result)
+    navigate(Path.Home)
+    console.log(values);
+
+  };
+  const values = { 
+                   loginSubmitHandler,
+                   registerSubmitHandler,
+                   username: auth.username,
+                   email: auth.email,
+                   isAuthenticated: !!auth.username
+                  }
   return (
-    <TodoContext.Provider value={loginSubmitHandler}>
+    <TodoContext.Provider value={values}>
     <div id="box">
 
    <Header></Header>
 
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
+        <Route path={Path.Home} element={<Home/>}></Route>
         <Route path="/games" element={<GameList/>}></Route>
         <Route path="/games/create" element={<CreateGame/>}></Route>
         <Route path="/login" element={<Login />}></Route>

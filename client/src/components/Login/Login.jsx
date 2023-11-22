@@ -9,7 +9,7 @@ const LoginFormKeys = {
 
 export default function Login (){
 
-  const loginSubmitHandler = useContext(TodoContext)
+  const {loginSubmitHandler} = useContext(TodoContext)
   
   const {values, onChange, onSubmit} = useForm(loginSubmitHandler,
      {[LoginFormKeys.Email]: '',
