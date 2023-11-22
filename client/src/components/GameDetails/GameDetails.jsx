@@ -5,6 +5,7 @@ import * as gameService from "../../services/gameService";
 import * as commentService from "../../services/commentService";
 
 export default function GameDetails(){
+    
     const [comment,setComment] = useState([])
     const { gameId } = useParams()
     const[game,setGame] = useState({})
@@ -24,7 +25,7 @@ export default function GameDetails(){
              formData.get('username'),
              formData.get('comment'));
              setComment(state => [...state, newComment]);
-             
+             resetFormValues()
     }
    
     return (
