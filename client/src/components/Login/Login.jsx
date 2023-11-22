@@ -1,9 +1,20 @@
+import { useContext } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
 import useForm from "../../hooks/useForm"
 
-
+const LoginFormKeys = {
+  Email: "email",
+  Password: "password",
+}
 
 export default function Login (){
-  const {values,onChange,onSubmit} = useForm({email: "", password:""})
+
+  const loginSubmitHandler = useContext(TodoContext)
+  
+  const {values, onChange, onSubmit} = useForm(loginSubmitHandler,
+     {[LoginFormKeys.Email]: '',
+      [LoginFormKeys.Password]: '',
+    });
     return (
         <>
         <section id="login-page" className="auth">
@@ -15,18 +26,18 @@ export default function Login (){
       <input
         type="email"
         id="email"
-        name="email"
+        name={LoginFormKeys.Email}
         placeholder="Sokka@gmail.com"
         onChange={onChange}
-        value={values.email}
+        value={values[LoginFormKeys.Email]}
       />
       <label htmlFor="login-pass">Password:</label>
       <input 
         type="password"
         id="login-password"
-        name="password" 
+        name={LoginFormKeys.Password} 
         onChange={onChange}
-        value={values.password}
+        value={values[LoginFormKeys.Password]}
         />
       <input 
         type="submit" 
