@@ -12,18 +12,25 @@ import Header from "./components/Header/Header"
 import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
+import Logout from "./components/Logout/Logout"
 
 
 
 function App() {
   const navigate = useNavigate()
-  const [auth,setAuth] = useState({})
+  const [auth,setAuth] = useState(()=>{
+    localStorage.removeItem('accessToken')
+    return {}
+  })
 
   const loginSubmitHandler = async (values) => {
 
     const result = await authService.login(values.email, values.password)
 
     setAuth(result)
+
+    localStorage.setItem('accessToken',result.accessToken)
+
     navigate(Path.Home)
 
   };
@@ -32,16 +39,26 @@ function App() {
    const result = await authService.register(values.email, values.password)
 
     setAuth(result)
+
+    localStorage.setItem('accessToken',result.accessToken)
+
     navigate(Path.Home)
-    console.log(values);
 
   };
+  const logoutHandler = ()=>{
+    setAuth({})
+
+    localStorage.removeItem('accessToken')
+
+    navigate(Path.Home)
+  }
   const values = { 
                    loginSubmitHandler,
                    registerSubmitHandler,
-                   username: auth.username,
+                   logoutHandler,
+                   username: auth.username || auth.email,
                    email: auth.email,
-                   isAuthenticated: !!auth.username
+                   isAuthenticated: !!auth.accessToken,
                   }
   return (
     <TodoContext.Provider value={values}>
@@ -56,6 +73,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/games/:gameId" element={<GameDetails/>}></Route>
+        <Route path={Path.Logout} element={<Logout />}></Route>
       </Routes>
    
 

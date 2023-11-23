@@ -24,3 +24,7 @@ const result = await request('POST',baseURL + '/register',{
 return result;
 
 }
+export const logout = async () => {
+
+     request('GET',baseURL + '/logout',)
+}

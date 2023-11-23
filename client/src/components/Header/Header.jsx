@@ -13,11 +13,11 @@ export default function Header(){
       GamesPlay
     </Link>
   </h1>
-  <nav>
+  <nav >
     <Link to={"/games"}>All games</Link>
-    {isAuthenticated && (<div id="user">
+    {isAuthenticated && (<div id="user" >
       <Link to={"/games/create"}>Create Game</Link>
-      <Link to={"/"}>Logout</Link>
+      <Link to={"/logout"}>Logout</Link>
       <span>| {username}</span>
     </div>)}
     
