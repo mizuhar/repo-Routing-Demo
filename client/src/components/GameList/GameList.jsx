@@ -1,4 +1,4 @@
-import * as gameService from "../../services/gameService";
+import * as gameService  from "../../services/gameService";
 import { useEffect,useState } from "react";
 import GameListItem from "./GameListItem/GameListItem";
 export default function GameList(){

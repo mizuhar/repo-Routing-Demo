@@ -3,7 +3,7 @@ import { Routes,Route, useNavigate } from "react-router-dom"
 
 import Path from './paths'
 import * as authService from "./services/authService"
-import { TodoContext } from "./contexts/TodoContext"
+import  {AuthProvider}  from "./contexts/TodoContext"
 
 import CreateGame from "./components/CreateGame/CreateGame"
 import GameDetails from "./components/GameDetails/GameDetails"
@@ -18,6 +18,7 @@ import Logout from "./components/Logout/Logout"
 
 function App() {
   const navigate = useNavigate()
+
   const [auth,setAuth] = useState(()=>{
     localStorage.removeItem('accessToken')
     return {}
@@ -58,10 +59,11 @@ function App() {
                    logoutHandler,
                    username: auth.username || auth.email,
                    email: auth.email,
+                   userId: auth._id,
                    isAuthenticated: !!auth.accessToken,
                   }
   return (
-    <TodoContext.Provider value={values}>
+    <AuthProvider value={values}>
     <div id="box">
 
    <Header></Header>
@@ -80,7 +82,7 @@ function App() {
 
       
     </div>
-    </TodoContext.Provider>
+    </AuthProvider>
   )
 }
 

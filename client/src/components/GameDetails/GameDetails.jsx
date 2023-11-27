@@ -3,12 +3,16 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import * as gameService from "../../services/gameService";
 import * as commentService from "../../services/commentService";
+import { useContext } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
 
 export default function GameDetails(){
-    
+    const {email, userId} = useContext(TodoContext) 
+    const[game,setGame] = useState({})
     const [comment,setComment] = useState([])
     const { gameId } = useParams()
-    const[game,setGame] = useState({})
+    
+    
 
     useEffect(() =>{
       gameService.getOne(gameId)
@@ -21,11 +25,14 @@ export default function GameDetails(){
         e.preventDefault()
        
         const formData = new FormData(e.currentTarget)
-         const newComment =   await commentService.createComment(gameId,
-             formData.get('username'),
-             formData.get('comment'));
-             setComment(state => [...state, newComment]);
-             resetFormValues()
+         const newComment =   await commentService.createComment(
+             gameId,
+             formData.get('comment'),
+            
+           
+             );
+
+             setComment(state => [...state, {...newComment, email }]);
     }
    
     return (
@@ -46,25 +53,25 @@ export default function GameDetails(){
     <div className="details-comments">
       <h2>Comments:</h2>
       <ul>
-            {comment.map(({_id,username,text,})=>
-            (<li key={_id} className="comment" ><p>{username}: {text}</p></li>))} 
+            {comment.map(({_id, text, email})=>
+            (<li key={_id} className="comment" ><p>{email}: {text}</p></li>))} 
       </ul>
       {comment.length === 0 && (<p className="no-comment">No comments.</p>)}
       
     </div>
-    {/* <div className="buttons">
+    {userId === game._ownerId && (<div className="buttons">
       <a href="#" className="button">
         Edit
       </a>
       <a href="#" className="button">
         Delete
       </a>
-    </div> */}
-  </div>
+    </div>
+  )}
+    </div>
   <article className="create-comment">
     <label>Add new comment:</label>
     <form className="form" onSubmit={addCommentHandler}>
-        <input type="text"  name="username" placeholder="username"/>
       <textarea name="comment" placeholder="Comment......" defaultValue={""} />
       <input className="btn submit" type="submit" defaultValue="Add Comment" />
     </form>
