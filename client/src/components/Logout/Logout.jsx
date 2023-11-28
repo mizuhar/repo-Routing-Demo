@@ -10,8 +10,11 @@ export default function Logout(){
     const navigate = useNavigate()
     useEffect(()=>{
     authService.logout()
-    .then(()=>logoutHandler())
-    .catch(()=>navigate(Path.Home))
+    .then(()=>{  logoutHandler(),
+                 navigate(Path.Home)})
+
+    .catch(()=> { logoutHandler(),
+                  navigate(Path.Home)})
 
 }),[];
    

@@ -1,40 +1,61 @@
 import { useState } from "react";
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import * as gameService from "../../services/gameService";
 import * as commentService from "../../services/commentService";
 import { useContext } from "react";
 import { TodoContext } from "../../contexts/TodoContext";
+import { useReducer } from "react";
+import reducer from "./commentReducer";
+import useForm from "../../hooks/useForm";
+
+
 
 export default function GameDetails(){
     const {email, userId} = useContext(TodoContext) 
     const[game,setGame] = useState({})
-    const [comment,setComment] = useState([])
-    const { gameId } = useParams()
     
+    //const [comment,setComment] = useState([])
+    const [comment, dispath] =  useReducer(reducer, [])
+    const { gameId } = useParams()
+   
     
 
     useEffect(() =>{
       gameService.getOne(gameId)
       .then(setGame)
       commentService.getAll(gameId)
-      .then(setComment)
+      .then(result=>{
+        dispath({
+          type: 'GET_ALL_COMMENTS',
+          payload: result,
+
+        })
+      })
     },[gameId]) 
 
-    const addCommentHandler = async (e) =>{
-        e.preventDefault()
+    const addCommentHandler = async (values) =>{
        
-        const formData = new FormData(e.currentTarget)
          const newComment =   await commentService.createComment(
              gameId,
-             formData.get('comment'),
+             values.comment,
             
-           
              );
-
-             setComment(state => [...state, {...newComment, email }]);
+           newComment.owner = { email }
+             //setComment(state => [...state, {...newComment, owner:  {email}  }]);
+             dispath({
+              type: 'ADD_COMMENTS',
+              payload: newComment,
+             })
     }
-   
+    // const initialValue =  useMemo(() => ({
+    //   comment: '',
+    // }),[])
+
+    const {values, onChange, onSubmit} = useForm(addCommentHandler,{comment: ''});
+
+    
+
     return (
         <>
          <section id="game-details">
@@ -53,26 +74,26 @@ export default function GameDetails(){
     <div className="details-comments">
       <h2>Comments:</h2>
       <ul>
-            {comment.map(({_id, text, email})=>
+            {comment.map(({_id, text, owner:  { email } })=>
             (<li key={_id} className="comment" ><p>{email}: {text}</p></li>))} 
       </ul>
       {comment.length === 0 && (<p className="no-comment">No comments.</p>)}
       
     </div>
     {userId === game._ownerId && (<div className="buttons">
-      <a href="#" className="button">
+      <Link to={`/games/${gameId}/edit`} className="button">
         Edit
-      </a>
-      <a href="#" className="button">
+      </Link>
+      <Link to={`/games/${gameId}/delete`} className="button">
         Delete
-      </a>
+      </Link>
     </div>
   )}
     </div>
   <article className="create-comment">
     <label>Add new comment:</label>
-    <form className="form" onSubmit={addCommentHandler}>
-      <textarea name="comment" placeholder="Comment......" defaultValue={""} />
+    <form className="form" onSubmit={onSubmit}>
+      <textarea name="comment" value={values.comment} onChange={onChange} placeholder="Comment......"  />
       <input className="btn submit" type="submit" defaultValue="Add Comment" />
     </form>
   </article>

@@ -2,10 +2,12 @@ import * as gameService  from "../../services/gameService";
 import { useEffect,useState } from "react";
 import GameListItem from "./GameListItem/GameListItem";
 export default function GameList(){
+    
   const [games,setGames] = useState([])
   useEffect(() => {
   gameService.getAll()
       .then(result => setGames(result))
+      .catch(error =>console.log(error))
  }, []);
 
     return (
