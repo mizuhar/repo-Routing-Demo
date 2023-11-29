@@ -8,11 +8,12 @@ import { TodoContext } from "../../contexts/TodoContext";
 import { useReducer } from "react";
 import reducer from "./commentReducer";
 import useForm from "../../hooks/useForm";
+import { useMemo } from "react";
 
 
 
 export default function GameDetails(){
-    const {email, userId} = useContext(TodoContext) 
+    const { email, userId } = useContext(TodoContext) 
     const[game,setGame] = useState({})
     
     //const [comment,setComment] = useState([])
@@ -48,11 +49,11 @@ export default function GameDetails(){
               payload: newComment,
              })
     }
-    // const initialValue =  useMemo(() => ({
-    //   comment: '',
-    // }),[])
+    const initialValue =  useMemo(() => ({
+      comment: '',
+    }),[])
 
-    const {values, onChange, onSubmit} = useForm(addCommentHandler,{comment: ''});
+    const {values, onChange, onSubmit} = useForm(addCommentHandler,initialValue);
 
     
 
