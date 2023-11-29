@@ -15,7 +15,8 @@ export default function GameList(){
         <>
         <section id="catalog-page">
   <h1>All Games</h1>
-   {games.map(x=>(<GameListItem key={x._id} {...x}/>))}
+
+   {games.map(x=> (<GameListItem key={x._id} {...x}/>))}
 
   
 

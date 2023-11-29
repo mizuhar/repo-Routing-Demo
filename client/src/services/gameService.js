@@ -23,3 +23,8 @@ export const edit = async (gameId, gameData) =>{
      
     return result
 }
+export const remove = async (gameId) =>{
+    const result = await request('DELETE', `${baseURL}/${gameId}`)
+     
+    return result
+}

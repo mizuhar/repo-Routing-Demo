@@ -1,0 +1,82 @@
+{
+  "07f260f4-466c-4607-9a33-f7273b24f1b4": {
+    "_id": "07f260f4-466c-4607-9a33-f7273b24f1b4",
+    "firstName": "Hulk",
+    "lastName": "Asenov",
+    "email": "asen@gmail.com",
+    "phoneNumber": "0899999999",
+    "createdAt": "2023-11-01T07:22:00.358Z",
+    "updatedAt": "2023-11-01T07:22:00.358Z",
+    "imageUrl": "https://static.independent.co.uk/s3fs-public/thumbnails/image/2012/04/26/18/Untitled-5.jpg?width=1200",
+    "address": {
+      "country": "България",
+      "city": "Перник",
+      "street": "Кракра 2",
+      "streetNumber": "26"
+    }
+  },
+  "bdabf5e9-23be-40a1-9f14-9117b6702a9d": {
+    "_id": "bdabf5e9-23be-40a1-9f14-9117b6702a9d",
+    "firstName": "Toni",
+    "lastName": "Marinkin",
+    "email": "marinkin@example.com",
+    "phoneNumber": "1234567890",
+    "createdAt": "2023-11-01T07:22:00.358Z",
+    "updatedAt": "2023-11-01T07:22:00.358Z",
+    "imageUrl": "https://img6.fresherslive.com/latestnews/2023/10/is-tony-stark-dead-in-real-life-2023--what-happened-to-tony-stark--652f630ee3fc012620846-1200.webp",
+    "address": {
+      "country": "USA",
+      "city": "New York",
+      "street": "123 Main St",
+      "streetNumber": "5"
+    }
+  },
+  "7b3143e1-d6df-4e67-bd7e-5f8b03f2fd3f": {
+    "_id": "7b3143e1-d6df-4e67-bd7e-5f8b03f2fd3f",
+    "firstName": "Petar",
+    "lastName": "Parker",
+    "email": "johndoe@example.com",
+    "phoneNumber": "9876543210",
+    "createdAt": "2023-11-01T07:22:00.358Z",
+    "updatedAt": "2023-11-01T07:22:00.358Z",
+    "imageUrl": "https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3BpZGVybWFufGVufDB8fDB8fHww",
+    "address": {
+      "country": "Canada",
+      "city": "Toronto",
+      "street": "456 Elm St",
+      "streetNumber": "7"
+    }
+  },
+  "7b3143e1-d6df-4e67-bd7e-5f8b0skdfvafj": {
+    "_id": "7b3143e1-d6df-4e67-bd7e-5f8b0skdfvafj",
+    "firstName": "Vladislav",
+    "lastName": "Stanchev",
+    "email": "mizuhar@gmail.com",
+    "phoneNumber": "0899990291",
+    "createdAt": "2020-10-01T07:22:00.358Z",
+    "updatedAt": "2022-09-01T07:22:00.358Z",
+    "imageUrl": "https://as2.ftcdn.net/v2/jpg/01/23/42/11/1000_F_123421137_FqirwvsNfjNPT4qO93fyuKx73ROrKvNQ.jpg",
+    "address": {
+      "country": "Bulgaria",
+      "city": "Silistra",
+      "street": "Petar Vichev",
+      "streetNumber": "23"
+    }
+  },
+  "7b3143e1-d6df-1456-bd7e-5f8b0skdfvafj": {
+    "_id": "7b3143e1-d6df-1456-bd7e-5f8b0skdfvafj",
+    "firstName": "Maria",
+    "lastName": "Stancheva",
+    "email": "maria@gmail.com",
+    "phoneNumber": "0889240069",
+    "createdAt": "2019-08-01T07:22:00.358Z",
+    "updatedAt": "2022-09-01T07:22:00.358Z",
+    "imageUrl": "https://storage.googleapis.com/pai-images/34c5d1a4913d41f3898662c09df8db99.jpeg",
+    "address": {
+      "country": "Bulgaria",
+      "city": "Burgas",
+      "street": "Slaveikov",
+      "streetNumber": "23"
+    }
+  }
+}
