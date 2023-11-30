@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom"
 import { request } from "../lib/request"
 
 const baseURL = 'http://localhost:3030/data/games'
@@ -7,6 +8,17 @@ export const getAll = async ()=>{
   const result =  await request('GET', baseURL)
 
     return result
+}
+export const getLatest = async ()=>{
+  const query = new URLSearchParams({
+    //sortBy: `_createdOn desc`,
+    //count: 3
+    offset: 0,
+    pageSize: 3,
+})
+  const result = await request('GET', `${baseURL}?${query}`)
+
+   return result
 }
 export const getOne = async (gameId)=>{
   const result =  await request('GET', `${baseURL}/${gameId}`)

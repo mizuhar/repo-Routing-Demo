@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import useForm from "../../hooks/useForm"
 import * as gameService from '../../services/gameService'
 
 
@@ -21,8 +20,9 @@ export default function GameEdit (){
             setGame(result))
     },[gameId])
 
-    const editGameSubmitHandler = async (values)=>{
-
+    const editGameSubmitHandler = async (e)=>{
+      e.preventDefault()
+      const values = Object.fromEntries(new FormData(e.currentTarget))
         try {
          await gameService.edit(gameId, values)
          navigate('/games')
@@ -30,13 +30,15 @@ export default function GameEdit (){
          console.log(error);
         } 
      }
+    const onChange = (e) =>{
+      setGame(state => ({...state, [e.target.name]: e.target.value}));
 
-const {values, onChange, onSubmit} = useForm(editGameSubmitHandler, game)
+    }
 
     return (
         <>
         <section id="create-page" className="auth">
-  <form id="create" onSubmit={onSubmit}>
+  <form id="create" onSubmit={editGameSubmitHandler}>
     <div className="container">
       <h1>Edit Game</h1>
       <label htmlFor="leg-title">Legendary title:</label>
@@ -44,8 +46,9 @@ const {values, onChange, onSubmit} = useForm(editGameSubmitHandler, game)
         type="text"
         id="title"
         name="title"
+        value={game.title}
         onChange={onChange}
-        value={values.title}
+        //onChange={}
         placeholder="Enter game title..."
       />
       <label htmlFor="category">Category:</label>
@@ -53,8 +56,8 @@ const {values, onChange, onSubmit} = useForm(editGameSubmitHandler, game)
         type="text"
         id="category"
         name="category"
+        value={game.category}
         onChange={onChange}
-        value={values.category}
         placeholder="Enter game category..."
       />
       <label htmlFor="levels">MaxLevel:</label>
@@ -62,8 +65,8 @@ const {values, onChange, onSubmit} = useForm(editGameSubmitHandler, game)
         type="number"
         id="maxLevel"
         name="maxLevel"
+        value={game.maxLevel}
         onChange={onChange}
-        value={values.maxLevel}
         min={1}
         placeholder={1}
       />
@@ -72,12 +75,12 @@ const {values, onChange, onSubmit} = useForm(editGameSubmitHandler, game)
         type="text"
         id="imageUrl"
         name="imageUrl"
+        value={game.imageUrl}
         onChange={onChange}
-        value={values.imageUrl}
         placeholder="Upload a photo..."
       />
       <label htmlFor="summary">Summary:</label>
-      <textarea name="summary" onChange={onChange} value={values.summary} id="summary" defaultValue={""} />
+      <textarea name="summary"   id="summary" value={game.summary} onChange={onChange} defaultValue={""} />
       <input  className="btn submit" type="submit" defaultValue="Create Game" />
     </div>
   </form>

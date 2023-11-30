@@ -29,13 +29,14 @@ function App() {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/games/:gameId" element={<GameDetails />}></Route>
-            
-
-            <Route element={<AuthGuard />}>
-                 <Route path="/games/create" element={<CreateGame/>}></Route>
-                <Route path={Path.GameEdit} element={<GameEdit />}></Route>
-                <Route path={Path.Logout} element={<Logout />}></Route>
-            </Route>
+            <Route path="/games/create" element={<CreateGame/>}></Route>
+            <Route path={Path.GameEdit} element={<GameEdit />}></Route>
+            <Route path={Path.Logout} element={<Logout />}></Route>
+            {/* <Route element={<AuthGuard />}>
+                 
+               
+               
+            </Route> */}
           </Routes>
         </div>
       </AuthProvider>
