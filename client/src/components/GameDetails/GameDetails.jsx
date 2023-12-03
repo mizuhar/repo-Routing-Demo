@@ -72,7 +72,7 @@ const deleteButtonClickHandler = async () =>{
     return (
         <>
          <section id="game-details">
-  <h1>Game Details</h1>
+  <h1>Boxer Details</h1>
   <div className="info-section">
     <div className="game-header">
       <img className="game-img" src={game.imageUrl} alt={game.title} />

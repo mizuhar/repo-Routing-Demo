@@ -14,7 +14,7 @@ export const getLatest = async ()=>{
     //sortBy: `_createdOn desc`,
     //count: 3
     offset: 0,
-    pageSize: 3,
+    //pageSize: 1,
 })
   const result = await request('GET', `${baseURL}?${query}`)
 

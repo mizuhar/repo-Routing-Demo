@@ -17,12 +17,13 @@ export default function Home (){
         <>
          <section id="welcome-world">
   <div className="welcome-message">
-    <h2>ALL new games are</h2>
-    <h3>Only in GamesPlay</h3>
+    <h2>The greatest heavyweight</h2>
+    <h3>boxers of all time</h3>
+    <h3 style={{fontSize: '20px'}}> vote in our site!</h3>
   </div>
-  <img src="./images/four_slider_img01.png" alt="hero" />
+  <img style={{marginTop:'-10em'}} src="https://i.ytimg.com/vi/SHY-s6LrgvA/maxresdefault.jpg" alt="all-time" />
   <div id="home-page">
-    <h1>Latest Games</h1>
+    <h1>Latest Suggestions</h1>
     {latestGames.map(game => <LatestGame {...game}></LatestGame>)}
     {/* Display div: with information about every game (if any) */}
 

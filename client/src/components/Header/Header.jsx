@@ -10,13 +10,13 @@ export default function Header(){
   {/* Navigation */}
   <h1>
     <Link className="home" to={"/"}>
-      GamesPlay
+      G.O.A.T
     </Link>
   </h1>
   <nav >
-    <Link to={"/games"}>All games</Link>
+    <Link to={"/games"}>List of the greatest </Link>
     {isAuthenticated && (<div id="user" >
-      <Link to={"/games/create"}>Create Game</Link>
+      <Link to={"/games/create"}>Your suggestion</Link>
       <Link to={"/logout"}>Logout</Link>
       <span>| {username}</span>
     </div>)}
