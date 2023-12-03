@@ -17,11 +17,11 @@ export default function Home (){
         <>
          <section id="welcome-world">
   <div className="welcome-message">
-    <h2>The greatest heavyweight</h2>
+    <h2>The greatest</h2>
     <h3>boxers of all time</h3>
     <h3 style={{fontSize: '20px'}}> vote in our site!</h3>
   </div>
-  <img style={{marginTop:'-10em'}} src="https://i.ytimg.com/vi/SHY-s6LrgvA/maxresdefault.jpg" alt="all-time" />
+  <img style={{marginTop:'-10em'}} src="https://www.sportco.io/images/post/vs_1629179581.jpg" alt="all-time" />
   <div id="home-page">
     <h1>Latest Suggestions</h1>
     {latestGames.map(game => <LatestGame {...game}></LatestGame>)}

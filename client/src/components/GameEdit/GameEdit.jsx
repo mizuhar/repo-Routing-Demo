@@ -40,8 +40,8 @@ export default function GameEdit (){
         <section id="create-page" className="auth">
   <form id="create" onSubmit={editGameSubmitHandler}>
     <div className="container">
-      <h1>Edit Game</h1>
-      <label htmlFor="leg-title">Legendary title:</label>
+      <h1>Edit Boxer's details</h1>
+      <label htmlFor="leg-title">Name of the Boxer:</label>
       <input
         type="text"
         id="title"

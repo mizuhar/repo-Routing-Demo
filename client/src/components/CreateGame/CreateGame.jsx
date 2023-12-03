@@ -22,8 +22,8 @@ export default function CreateGame(){
         <section id="create-page" className="auth">
   <form id="create" onSubmit={createGameSubmitHandler}>
     <div className="container">
-      <h1>Create Game</h1>
-      <label htmlFor="leg-title">Legendary title:</label>
+      <h1>Your vote</h1>
+      <label htmlFor="leg-title">Name of the boxer:</label>
       <input
         type="text"
         id="title"
@@ -37,7 +37,7 @@ export default function CreateGame(){
         name="category"
         placeholder="Enter game category..."
       />
-      <label htmlFor="levels">MaxLevel:</label>
+      <label htmlFor="levels">Number of world title:</label>
       <input
         type="number"
         id="maxLevel"

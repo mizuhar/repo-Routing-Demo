@@ -1,7 +1,7 @@
 #welcome-world {
     width: auto;
     padding-right: 15px;
-    padding-top: 7em;
+    padding-top: 3em;
     justify-content: right;
     padding-left: 15px;
     position: relative;
@@ -138,7 +138,8 @@
 }
 
 .details-btn {
-    background-color: #fd5454;
+    border-radius: 20px;
+    background-color: #ef2626;
     font-size: 1.4rem;
     padding-top: 20px;
     margin-top: 10px;
@@ -153,7 +154,8 @@
 }
 
 .btn.details-btn:hover {
-    background-color: rgb(192, 129, 117);
+    
+    background-color: rgb(46, 168, 64);
     color: white;
 }
 
